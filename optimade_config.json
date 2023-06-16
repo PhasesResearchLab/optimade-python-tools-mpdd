@@ -1,38 +1,112 @@
 {
     "debug": false,
-    "default_db": "test_server",
-    "base_url": "http://localhost:5000",
+    "insert_test_data": false,
+    "database_backend": "mongodb",
+    "mongo_database": "MPDD",
+    "mongo_uri": "mongodb://amk:internal@momongo:27017/",
+    "page_limit": 20,
+    "page_limit_max": 500,
+    "default_db": "mpdd",
+    "base_url": "http://mpddoptimade.phaseslab.org",
+    "available_endpoints": ["structures"],
     "implementation": {
-        "name": "Example implementation",
-        "source_url": "https://github.com/Materials-Consortia/optimade-python-tools",
-        "issue_tracker": "https://github.com/Materials-Consortia/optimade-python-tools/issues",
-        "maintainer": {"email": "dev@optimade.org"}
+        "name": "optimade-python-tools (modified for MPDD-schema databases)",
+        "source_url": "https://github.com/amkrajewski/optimade-python-tools-amk",
+        "maintainer": {"email": "ak@psu.edu"},
+        "issue_tracker": "https://github.com/amkrajewski/optimade-python-tools-amk/issues",
+        "version": "0.2"
     },
     "provider": {
-        "name": "Example provider",
-        "description": "Provider used for examples, not to be assigned to a real database",
-        "prefix": "exmpl",
-        "homepage": "https://example.com"
+        "name": "Material-Property-Descriptor Database",
+        "description": "Material-Property-Descriptor Database maintained by Phases Research Lab at Pennsylvania State University",
+        "prefix": "mpdd",
+        "homepage": "http://mpdd.phaseslab.com"
     },
-    "index_base_url": "http://localhost:5001",
     "provider_fields": {
         "structures": [
-            "band_gap",
-            {"name": "chemsys", "type": "string", "description": "A string representing the chemical system in an ordered fashion"}
+            {
+                "name": "anonymizedformula", 
+                "type": "string",
+                "description": "Anonymized formula following tpye AB2 / AB2C4 convention."
+            },{
+                "name": "system", 
+                "type": "string",
+                "description": "Chemical system with elements delimited by - and ordered alphabetically."
+            },{
+                "name": "crystalsystem", 
+                "type": "string",
+                "description": "Crystal system / type."
+            },{
+                "name": "pointgroup", 
+                "type": "string",
+                "description": "Point group symbol."
+            },{
+                "name": "spacegroup", 
+                "type": "string",
+                "description": "Space group symbol."
+            },{
+                "name": "spacegroupn", 
+                "type": "integer",
+                "description": "Space group number."
+            },{
+                "name": "atomicvolume", 
+                "type": "float",
+                "description": "Volume per atom in AA^3"
+            },{
+                "name": "meanmass", 
+                "type": "float",
+                "description": "Mean mass per atom in atomic units"
+            },{
+                "name": "volume", 
+                "type": "float",
+                "description": "Volume of the atomic structure in AA^3"
+            },{
+                "name": "density", 
+                "type": "float",
+                "description": "Density of the atomic structure"
+            },{
+                "name": "reducedmass", 
+                "type": "float",
+                "description": "Reduced mass average (geometric) over pairs of different elements (rather than the structure as a whole)"
+            },{
+                "name": "reducedmassall", 
+                "type": "float",
+                "description": "Reduced mass average (geometric) over pairs all atoms"
+            },{
+                "name": "poscar", 
+                "type": "string",
+                "description": "A direct access to the POSCAR file stored in a single string"
+            },{
+                "name": "formationenergy_sipfenn_krajewski2020_lightmodel", 
+                "type": "float",
+                "description": "Formation energy of the structure in eV/atom predicted by Light Model from Krajewski 2020 SIPFENN models."
+            },{
+                "name": "formationenergy_sipfenn_krajewski2020_novelmaterialsmodel", 
+                "type": "float",
+                "description": "Formation energy of the structure in eV/atom predicted by Novel Materials Model from Krajewski 2020 SIPFENN models."
+            },{
+                "name": "formationenergy_sipfenn_krajewski2020_standardmaterialsmodel", 
+                "type": "float",
+                "description": "Formation energy of the structure in eV/atom predicted by Standard Materials Model from Krajewski 2020 SIPFENN models."
+            },{
+                "name": "stability_sipfenn_amk2020_nmm", 
+                "type": "float",
+                "description": "Predicted stability (convex hull distance) of the structure in eV/atom predicted by Novel Materials Model from Krajewski 2020 SIPFENN models. Note: It is dependent on the other structures in the database."
+            },{
+                "name": "descriptors", 
+                "type": "dict", 
+                "description": "A dictionary of arrays of features - feature vectors"
+            },{
+                "name": "metadata", 
+                "type": "dict", 
+                "description": "A dictionary of associated MPDD metadata including source of the atomic structure"
+            }
         ]
     },
     "aliases": {
         "structures": {
-            "id": "task_id",
-            "immutable_id": "_id",
-            "chemical_formula_descriptive": "pretty_formula",
-            "chemical_formula_reduced": "pretty_formula",
-            "chemical_formula_anonymous": "formula_anonymous"
-        }
-    },
-    "length_aliases": {
-        "structures": {
-            "chemsys": "nelements"
+            "id":  "_id",
+            "immutable_id": "_id"
         }
     }
 }
