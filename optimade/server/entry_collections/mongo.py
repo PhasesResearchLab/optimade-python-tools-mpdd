@@ -84,6 +84,15 @@ class MongoCollection(EntryCollection):
             kwargs["filter"] = {}
         if kwargs["filter"] == {}:
             kwargs["hint"] = [('_id', ASCENDING)]
+        if len(kwargs["filter"])==1:
+            for singleField in ['elements', 
+                                'chemical_formula_anonymous', 
+                                'chemical_formula_reduced', 
+                                'chemical_formula_descriptive', 
+                                'chemical_formula_hill']:
+                if set(list(kwargs["filter"]))==set([singleField]):
+                    kwargs["hint"] = [(singleField, ASCENDING)]
+
         return self.collection.count_documents(**kwargs)
 
     def insert(self, data: List[EntryResource]) -> None:
