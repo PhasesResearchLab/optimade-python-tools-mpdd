@@ -10,7 +10,7 @@
     "base_url": "http://mpddoptimade.phaseslab.org",
     "available_endpoints": ["structures"],
     "implementation": {
-        "name": "optimade-python-tools (modified for MPDD-schema databases)",
+        "name": "optimade-python-tools modified for flattened OPTIMADE+MPDD schema",
         "source_url": "https://github.com/amkrajewski/optimade-python-tools-amk",
         "maintainer": {"email": "ak@psu.edu"},
         "issue_tracker": "https://github.com/amkrajewski/optimade-python-tools-amk/issues",
@@ -18,9 +18,9 @@
     },
     "provider": {
         "name": "Material-Property-Descriptor Database",
-        "description": "Material-Property-Descriptor Database maintained by Phases Research Lab at Pennsylvania State University",
+        "description": "Material-Property-Descriptor Database (MPDD) of atomic structures, optimized for high-througput deployment of material featurizers and ML models. A full description is provided at <a href=https://phaseslab.com/mpdd>phaseslab.com/mpdd</a> while partial-access web interface is provided at <a href=http://mpdd.phaseslab.com>mpdd.phaseslab.com</a>. The database is maintained by Prof. Zi-Kui Liu's Phases Research Lab (<a href=https://phaseslab.org>phaseslab.org</a>) at The Pennsylvania State University",
         "prefix": "mpdd",
-        "homepage": "http://mpdd.phaseslab.com"
+        "homepage": "http://phaseslab.com/mpdd"
     },
     "provider_fields": {
         "structures": [
