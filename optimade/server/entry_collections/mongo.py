@@ -9,7 +9,7 @@ from optimade.server.mappers import BaseResourceMapper
 from optimade.server.query_params import EntryListingQueryParams, SingleEntryQueryParams
 
 if CONFIG.database_backend.value == "mongodb":
-    from pymongo import MongoClient, version_tuple
+    from pymongo import MongoClient, version_tuple, ASCENDING
 
     if version_tuple[0] < 4:
         LOGGER.warning(
@@ -82,6 +82,8 @@ class MongoCollection(EntryCollection):
                 del kwargs[k]
         if "filter" not in kwargs:  # "filter" is needed for count_documents()
             kwargs["filter"] = {}
+        if kwargs["filter"] == {}:
+            kwargs["hint"] = [('_id', ASCENDING)]
         return self.collection.count_documents(**kwargs)
 
     def insert(self, data: List[EntryResource]) -> None:

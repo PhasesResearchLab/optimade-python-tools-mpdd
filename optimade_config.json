@@ -11,10 +11,10 @@
     "available_endpoints": ["structures"],
     "implementation": {
         "name": "optimade-python-tools modified for flattened OPTIMADE+MPDD schema",
-        "source_url": "https://github.com/amkrajewski/optimade-python-tools-amk",
+        "source_url": "https://github.com/PhasesResearchLab/optimade-python-tools-mpdd",
         "maintainer": {"email": "ak@psu.edu"},
-        "issue_tracker": "https://github.com/amkrajewski/optimade-python-tools-amk/issues",
-        "version": "0.2"
+        "issue_tracker": "https://github.com/PhasesResearchLab/optimade-python-tools-mpdd/issues",
+        "version": "0.3"
     },
     "provider": {
         "name": "Material-Property-Descriptor Database",
