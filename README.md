@@ -1,18 +1,12 @@
 <!-- markdownlint-disable MD033 -->
 <!-- markdownlint-disable-next-line MD041 -->
-<div align="center" style="padding-bottom: 1em;">
-<img width="100px" align="center" src="https://matsci.org/uploads/default/original/2X/b/bd2f59b3bf14fb046b74538750699d7da4c19ac1.svg">
+<div align="center">
+<img id="mpddlogo" width="100px" src="https://images.squarespace-cdn.com/content/v1/5d7c199aa75aa00cdd43098b/1625971605808-B8K2666QM0FBF921E9HR/logo.png">
+<img width="100px" src="https://matsci.org/uploads/default/original/2X/b/bd2f59b3bf14fb046b74538750699d7da4c19ac1.svg">
 </div>
 
-# <div align="center">OPTIMADE Python tools</div>
-
+# <div align="center">OPTIMADE Python tools - modified for MPDD</div>
 <div align="center">
-
-<a href="https://doi.org/10.21105/joss.03458"><img alt="JOSS DOI" src="https://img.shields.io/badge/JOSS-10.21105%2Fjoss.03458-blueviolet"></a>
-</div>
-
-<div align="center">
-
 <table>
 <thead align="center">
 <tr><th align="center">Latest release</th><th align="center">Build status</th><th align="center">Activity</th></tr>
@@ -41,40 +35,11 @@
 
 </div>
 
+This is a fork of the [optimade-python-tools](https://github.com/Materials-Consortia/optimade-python-tools) modified and truncated for [MPDD Database (phaseslab.com/mpdd)](https://phaseslab.com/mpdd) use.
+
 The aim of [OPTIMADE](https://optimade.org) is to develop a common API, compliant with the [JSON:API 1.0](http://jsonapi.org/format/1.0/) specification.
 This is to enable interoperability among databases that serve crystal structures and calculated properties of existing and hypothetical materials.
 
-This repository contains a library of tools for implementing and consuming [OPTIMADE APIs](https://www.optimade.org) using Python:
-
-1. [pydantic](https://github.com/pydantic/pydantic) data models for all [OPTIMADE entry types](https://www.optimade.org/optimade-python-tools/latest/all_models/) and endpoint responses, and a [Lark](https://github.com/lark-parser/lark) [EBNF grammar](https://en.wikipedia.org/wiki/Extended_Backus%E2%80%93Naur_form) implementation for the OPTIMADE filter language.
-1. Adapters to map OPTIMADE data to and from many commonly used atomistic Python frameworks (e.g., [pymatgen](https://pymatgen.org/), [ASE](https://wiki.fysik.dtu.dk/ase/)) and crystallographic file types (e.g., [CIF](https://www.iucr.org/resources/cif)), using the `optimade.adapters` module.
-1. A configurable reference server implementation that can make use of either MongoDB or Elasticsearch database backends out-of-the-box, and is readily extensible to other backends. Try it out on the [demo site](https://optimade.fly.dev)! The OpenAPI schemas of the server are used to construct the [OPTIMADE schemas](https://schemas.optimade.org/) site.
-1. An [OPTIMADE client](https://www.optimade.org/optimade-python-tools/latest/getting_started/client/) (`optimade-get`) that can query multiple [OPTIMADE providers](https://optimade.org/providers-dashboard) concurrently with a given filter, at the command-line or from Python code.
-1. A fuzzy API validator tool, which may be called from the shell (`optimade-validator`) or used as a GitHub Action from [optimade-validator-action](https://github.com/Materials-Consortia/optimade-validator-action); this validator is used to construct the [providers dashboard](https://optimade.org/providers-dashboard).
-
-
-## Documentation
-
-This document, guides, and the full module API documentation can be found online at [https://optimade.org/optimade-python-tools](https://optimade.org/optimade-python-tools).
-In particular, documentation of the OPTIMADE API response data models (implemented here with [pydantic](https://github.com/pydantic/pydantic)) can be found online under [OPTIMADE Data Models](https://optimade.org/optimade-python-tools/latest/all_models).
-
-The release history and changelog can be found in [the changelog](CHANGELOG.md).
-
-## Installation
-
-Detailed installation instructions for different use cases (e.g., using the library or running a server) can be found in [the installation documentation](INSTALL.md).
-
-The latest stable version of this package can be obtained from [PyPI](https://pypi.org/project/optimade):
-
-```shell
-pip install optimade
-```
-
-The latest development version of this package can be obtained from the master branch of this repository:
-
-```shell
-git clone https://github.com/Materials-Consortia/optimade-python-tools
-```
 
 ## Supported OPTIMADE versions
 
@@ -103,18 +68,6 @@ Each release of the `optimade` package from this repository only targets one ver
 </tbody>
 </table>
 </div>
-
-## Contributing and Getting Help
-
-All development of this package (bug reports, suggestions, feedback and pull requests) occurs in the [optimade-python-tools GitHub repository](https://github.com/Materials-Consortia/optimade-python-tools).
-Contribution guidelines and tips for getting help can be found in the [contributing notes](CONTRIBUTING.md).
-
-## How to cite
-
-If you use this package to access or serve OPTIMADE data, we kindly request that you consider citing the following:
-
-- Andersen *et al.*, OPTIMADE, an API for exchanging materials data, *Sci. Data* **8**, 217 (2021) [10.1038/s41597-021-00974-z](https://doi.org/10.1038/s41597-021-00974-z)
-- Evans *et al.*, optimade-python-tools: a Python library for serving and consuming materials data via OPTIMADE APIs. *Journal of Open Source Software*, **6**(65), 3458 (2021) [10.21105/joss.03458](https://doi.org/10.21105/joss.03458)
 
 ## Links
 
