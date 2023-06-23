@@ -18,7 +18,7 @@
     },
     "provider": {
         "name": "Material-Property-Descriptor Database",
-        "description": "Material-Property-Descriptor Database (MPDD) of atomic structures, optimized for high-througput deployment of material featurizers and ML models. A full description is provided at <a href=https://phaseslab.com/mpdd>phaseslab.com/mpdd</a> while partial-access web interface is provided at <a href=http://mpdd.phaseslab.com>mpdd.phaseslab.com</a>. The database is maintained by Prof. Zi-Kui Liu's Phases Research Lab (<a href=https://phaseslab.org>phaseslab.org</a>) at The Pennsylvania State University",
+        "description": "Material-Property-Descriptor Database (MPDD) of atomic structures, optimized for the high-throughput deployment of material featurizers and ML models. A full description is provided at <a href=https://phaseslab.com/mpdd>phaseslab.com/mpdd</a> while a partial-access web interface is provided at <a href=http://mpdd.phaseslab.com>mpdd.phaseslab.com</a>. The database is maintained by Prof. Zi-Kui Liu's Phases Research Lab (<a href=https://phaseslab.org>phaseslab.org</a>) at The Pennsylvania State University",
         "prefix": "mpdd",
         "homepage": "http://phaseslab.com/mpdd"
     },
@@ -27,7 +27,7 @@
             {
                 "name": "anonymizedformula", 
                 "type": "string",
-                "description": "Anonymized formula following tpye AB2 / AB2C4 convention."
+                "description": "Anonymized formula following type AB2 / AB2C4 convention."
             },{
                 "name": "system", 
                 "type": "string",
@@ -35,7 +35,7 @@
             },{
                 "name": "crystalsystem", 
                 "type": "string",
-                "description": "Crystal system / type."
+                "description": "Crystal system/type."
             },{
                 "name": "pointgroup", 
                 "type": "string",
@@ -99,7 +99,7 @@
             },{
                 "name": "metadata", 
                 "type": "dict", 
-                "description": "A dictionary of associated MPDD metadata including source of the atomic structure"
+                "description": "A dictionary of associated MPDD metadata including the source of the atomic structure"
             }
         ]
     },
