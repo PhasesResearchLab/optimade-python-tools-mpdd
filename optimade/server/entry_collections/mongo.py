@@ -85,11 +85,18 @@ class MongoCollection(EntryCollection):
         if kwargs["filter"] == {}:
             kwargs["hint"] = [('_id', ASCENDING)]
         if len(kwargs["filter"])==1:
-            for singleField in ['elements', 
+            for singleField in ['id',
+                                'elements', 
                                 'chemical_formula_anonymous', 
                                 'chemical_formula_reduced', 
                                 'chemical_formula_descriptive', 
-                                'chemical_formula_hill']:
+                                'chemical_formula_hill',
+                                'last_modified',
+                                'nperiodic_dimensions',
+                                'nelements',
+                                'nsites',
+                                'structure_features',
+                                'species_at_sites']:
                 if set(list(kwargs["filter"]))==set([singleField]):
                     kwargs["hint"] = [(singleField, ASCENDING)]
 

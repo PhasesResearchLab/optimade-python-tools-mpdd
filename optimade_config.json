@@ -94,19 +94,18 @@
                 "description": "Predicted stability (convex hull distance) of the structure in eV/atom predicted by Novel Materials Model from Krajewski 2020 SIPFENN models. Note: It is dependent on the other structures in the database."
             },{
                 "name": "descriptors", 
-                "type": "dict", 
+                "type": "dictionary", 
                 "description": "A dictionary of arrays of features - feature vectors"
             },{
                 "name": "metadata", 
-                "type": "dict", 
+                "type": "dictionary", 
                 "description": "A dictionary of associated MPDD metadata including source of the atomic structure"
             }
         ]
     },
     "aliases": {
         "structures": {
-            "id":  "_id",
-            "immutable_id": "_id"
+            "immutable_id":  "_id"
         }
     }
 }
