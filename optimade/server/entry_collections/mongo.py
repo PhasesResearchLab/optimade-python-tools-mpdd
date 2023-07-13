@@ -7,9 +7,9 @@ from optimade.server.entry_collections import EntryCollection
 from optimade.server.logger import LOGGER
 from optimade.server.mappers import BaseResourceMapper
 from optimade.server.query_params import EntryListingQueryParams, SingleEntryQueryParams
+from pymongo import MongoClient, version_tuple, ASCENDING
 
 if CONFIG.database_backend.value == "mongodb":
-    from pymongo import MongoClient, version_tuple, ASCENDING
 
     if version_tuple[0] < 4:
         LOGGER.warning(
@@ -82,6 +82,23 @@ class MongoCollection(EntryCollection):
                 del kwargs[k]
         if "filter" not in kwargs:  # "filter" is needed for count_documents()
             kwargs["filter"] = {}
+        with open('/app/mongoQueryLog-count.txt', 'a') as log:
+            log.write("Raw:     "+str(kwargs["filter"]))
+            log.write('\n')
+
+        # All data in MPDD is already free of assemblies
+        filterToRemove = {'$and': [{'structure_features': {'$nin': ['assemblies']}}, {'structure_features': {'$ne': None}}]}
+        if kwargs["filter"] == filterToRemove:
+            kwargs["filter"] = {}
+        if '$and' in kwargs["filter"]:
+            if filterToRemove in kwargs["filter"]["$and"]:
+                kwargs["filter"]["$and"].remove(filterToRemove)
+                if len(kwargs["filter"]["$and"])==1:
+                    kwargs["filter"] = kwargs["filter"]["$and"][0]
+
+        with open('/app/mongoQueryLog-count.txt', 'a') as log:
+            log.write("Adjusted: "+str(kwargs["filter"]))
+            log.write('\n\n')
         if kwargs["filter"] == {}:
             kwargs["hint"] = [('_id', ASCENDING)]
         if len(kwargs["filter"])==1:
@@ -166,6 +183,49 @@ class MongoCollection(EntryCollection):
             entries matching the query and a boolean for whether or not there is more data available.
 
         """
+
+        with open('/app/mongoQueryLog-query.txt', 'a') as log:
+            log.write("Raw:     "+str(criteria))
+            log.write('\n')
+
+        # All data in MPDD is already free of assemblies
+        filterToRemove = {'$and': [{'structure_features': {'$nin': ['assemblies']}}, {'structure_features': {'$ne': None}}]}
+        if criteria["filter"] == filterToRemove:
+            criteria["filter"] = {}
+        if '$and' in criteria["filter"]:
+            if filterToRemove in criteria["filter"]["$and"]:
+                criteria["filter"]["$and"].remove(filterToRemove)
+                if len(criteria["filter"]["$and"])==1:
+                    criteria["filter"] = criteria["filter"]["$and"][0]
+
+        if 'hint' not in criteria:
+            criteria['hint'] = {}
+
+        if criteria["filter"] == {}:
+            criteria["hint"] = [('_id', ASCENDING)]
+        if len(criteria["filter"])==1:
+            for singleField in ['id',
+                                'elements', 
+                                'chemical_formula_anonymous', 
+                                'chemical_formula_reduced', 
+                                'chemical_formula_descriptive', 
+                                'chemical_formula_hill',
+                                'last_modified',
+                                'nperiodic_dimensions',
+                                'nelements',
+                                'nsites',
+                                'structure_features',
+                                'species_at_sites']:
+                if set(list(criteria["filter"]))==set([singleField]):
+                    criteria["hint"] = [(singleField, ASCENDING)]
+
+        if criteria['hint'] == {}:
+            del criteria['hint']
+
+        with open('/app/mongoQueryLog-query.txt', 'a') as log:
+            log.write("Adjusted: "+str(criteria))
+            log.write('\n\n')
+
         results = list(self.collection.find(**criteria))
 
         if CONFIG.database_backend == SupportedBackend.MONGOMOCK and criteria.get(
