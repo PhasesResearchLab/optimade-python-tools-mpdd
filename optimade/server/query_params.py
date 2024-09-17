@@ -190,7 +190,7 @@ class EntryListingQueryParams(BaseQueryParams):
             description="The output format requested (see section Response Format).\nDefaults to the format string 'json', which specifies the standard output format described in this specification.\nExample: `http://example.com/v1/structures?response_format=xml`",
         ),
         email_address: EmailStr = Query(
-            "",
+            None,
             description="An email address of the user making the request.\nThe email SHOULD be that of a person and not an automatic system.\nExample: `http://example.com/v1/structures?email_address=user@example.com`",
         ),
         response_fields: str = Query(
